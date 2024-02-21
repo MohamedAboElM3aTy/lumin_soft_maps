@@ -8,6 +8,9 @@ class RoundedTextField extends StatelessWidget {
   final FormFieldValidator<String> validator;
   final Function(String) changed;
   final TextEditingController controller;
+  final FocusNode focusNode;
+  final bool autoFocus;
+  final VoidCallback? onEditingComplete;
 
   const RoundedTextField({
     required this.changed,
@@ -15,6 +18,9 @@ class RoundedTextField extends StatelessWidget {
     required this.hintText,
     this.icon = Icons.person,
     required this.controller,
+    required this.focusNode,
+    this.autoFocus = false,
+    required this.onEditingComplete,
     super.key,
   });
 
@@ -23,6 +29,9 @@ class RoundedTextField extends StatelessWidget {
     return TextFieldContainer(
       child: TextFormField(
         controller: controller,
+        onEditingComplete: onEditingComplete,
+        autofocus: autoFocus,
+        focusNode: focusNode,
         onChanged: changed,
         validator: validator,
         keyboardType: TextInputType.emailAddress,

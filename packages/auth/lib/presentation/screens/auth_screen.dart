@@ -20,15 +20,22 @@ class _AuthScreenState extends State<AuthScreen> {
   late final GlobalKey<FormState> _formKey;
   late final AuthCubit _authCubit;
   var _authForm = AuthForm.login;
+  late final FocusNode _emailFocusNode;
+  late final FocusNode _passwordFocusNode;
+  late final FocusNode _firstNameFocusNode;
+  late final FocusNode _lastNameFocusNode;
 
   @override
   void initState() {
+    _formKey = GlobalKey<FormState>();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _firstNameController = TextEditingController();
     _lastNameController = TextEditingController();
-    _formKey = GlobalKey<FormState>();
-    // _authCubit = context.read<AuthCubit>();
+    _emailFocusNode = FocusNode();
+    _passwordFocusNode = FocusNode();
+    _firstNameFocusNode = FocusNode();
+    _lastNameFocusNode = FocusNode();
     _authCubit = locater<AuthCubit>();
     super.initState();
   }
@@ -39,6 +46,10 @@ class _AuthScreenState extends State<AuthScreen> {
     _passwordController.dispose();
     _firstNameController.dispose();
     _lastNameController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    _firstNameFocusNode.dispose();
+    _lastNameFocusNode.dispose();
     _authCubit.close();
     super.dispose();
   }
@@ -74,6 +85,11 @@ class _AuthScreenState extends State<AuthScreen> {
                   _authForm == AuthForm.register
                       ? RoundedTextField(
                           controller: _firstNameController,
+                          focusNode: _firstNameFocusNode,
+                          autoFocus:
+                              _authForm == AuthForm.register ? true : false,
+                          onEditingComplete: () => FocusScope.of(context)
+                              .requestFocus(_lastNameFocusNode),
                           changed: (firstName) =>
                               _firstNameController.text = firstName,
                           validator: (firstName) {
@@ -88,6 +104,10 @@ class _AuthScreenState extends State<AuthScreen> {
                   _authForm == AuthForm.register
                       ? RoundedTextField(
                           controller: _lastNameController,
+                          focusNode: _lastNameFocusNode,
+                          autoFocus: false,
+                          onEditingComplete: () => FocusScope.of(context)
+                              .requestFocus(_emailFocusNode),
                           changed: (lastName) =>
                               _lastNameController.text = lastName,
                           validator: (lastName) {
@@ -101,6 +121,10 @@ class _AuthScreenState extends State<AuthScreen> {
                       : const SizedBox.shrink(),
                   RoundedTextField(
                     controller: _emailController,
+                    focusNode: _emailFocusNode,
+                    autoFocus: _authForm == AuthForm.login ? true : false,
+                    onEditingComplete: () =>
+                        FocusScope.of(context).requestFocus(_passwordFocusNode),
                     changed: (email) => _emailController.text = email,
                     validator: (email) {
                       if (!AppValidator.isEmail(email?.trim())) {
@@ -112,6 +136,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                   PasswordTextField(
                     controller: _passwordController,
+                    focusNode: _passwordFocusNode,
                     onTap: (pass) => _passwordController.text = pass,
                     validator: (password) {
                       if (!AppValidator.isPassword(password)) {

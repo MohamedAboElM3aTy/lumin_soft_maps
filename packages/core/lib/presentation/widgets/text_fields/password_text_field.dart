@@ -7,11 +7,13 @@ class PasswordTextField extends StatefulWidget {
   final FormFieldValidator<String> validator;
   final Function(String) onTap;
   final TextEditingController controller;
+  final FocusNode focusNode;
 
   const PasswordTextField({
     required this.onTap,
     required this.validator,
     required this.controller,
+    required this.focusNode,
     super.key,
   });
 
@@ -29,6 +31,8 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
     return TextFieldContainer(
       child: TextFormField(
         controller: widget.controller,
+        focusNode: widget.focusNode,
+        autofocus: false,
         onChanged: widget.onTap,
         validator: widget.validator,
         textInputAction: TextInputAction.done,
