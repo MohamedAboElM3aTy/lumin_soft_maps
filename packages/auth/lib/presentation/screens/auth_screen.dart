@@ -13,17 +13,17 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  late final GlobalKey<FormState> _formKey;
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
   late final TextEditingController _firstNameController;
   late final TextEditingController _lastNameController;
-  late final GlobalKey<FormState> _formKey;
-  late final AuthCubit _authCubit;
-  var _authForm = AuthForm.login;
   late final FocusNode _emailFocusNode;
   late final FocusNode _passwordFocusNode;
   late final FocusNode _firstNameFocusNode;
   late final FocusNode _lastNameFocusNode;
+  var _authForm = AuthForm.login;
+  late final AuthCubit _authCubit;
 
   @override
   void initState() {
@@ -57,9 +57,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: const [LanguageButton()],
-      ),
+      appBar: AppBar(actions: const [LanguageButton()]),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -140,7 +138,9 @@ class _AuthScreenState extends State<AuthScreen> {
                     onTap: (pass) => _passwordController.text = pass,
                     validator: (password) {
                       if (!AppValidator.isPassword(password)) {
-                        return context.getText('enterValidPassword');
+                        return _authForm == AuthForm.register
+                            ? context.getText('enterValidPassword')
+                            : context.getText('wrongPassword');
                       }
                       return null;
                     },

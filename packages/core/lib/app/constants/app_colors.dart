@@ -20,4 +20,5 @@ class AppColors {
   static const Color redColor = Color(0xFFFF6D83);
   static const Color divider = Color(0xffCAC4D0);
   static const Color blackColor = Color.fromARGB(255, 7, 7, 7);
+  static const Color whiteColor = Color.fromARGB(255, 254, 253, 253);
 }

@@ -15,6 +15,7 @@ dependencies:
   dartz: ^0.10.1
   auto_size_text: ^3.0.0
   google_fonts: ^6.1.0
+  url_launcher: ^6.2.5
 
   ### Networking
   retrofit: ^4.1.0

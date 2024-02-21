@@ -29,6 +29,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
+      containerColor: context.seedColor.onTertiary,
       child: TextFormField(
         controller: widget.controller,
         focusNode: widget.focusNode,

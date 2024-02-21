@@ -15,12 +15,18 @@
     "enterValidPassword": "علي الأقل على حرف واحد كبير وحرف صغير واحد وحرف خاص واحد",
     "enterValidFirstName": "ادخل الاسم الاول صحيح",
     "enterValidLastName": "ادخل الاسم الاخير صحيح",
+    "wrongPassword": "كلمة السر خاطئة",
     "login": "سجل دخول",
     "signup": "انشاء حساب ",
     "dontHaveAccount": "لا تمتلك حساب ؟ سجل الان",
     "haveAnAccount": "لديك حساب ؟ سجل دخول",
-    "forgotPassword": "نسيت كلمة السر",
+    "forgotPassword": " نسيت كلمة السر ؟",
     "firstName": "الاسم الاول",
     "lastName": "الاسم الاخير",
-    "getStarted": "ابدأ الان"
+    "getStarted": "ابدأ الان",
+    "requestRide": "أطلب رحلة",
+    "whereTo": "الي اين ؟",
+    "locationRequired": "الموقع مطلوب",
+    "egypt": "مصر",
+    "london": "لندن"
 }

@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:core/app/extensions/context.dart';
+import 'package:flutter/material.dart';
 
 class TextFieldContainer extends StatelessWidget {
   final Widget child;
+  final Color containerColor;
 
   const TextFieldContainer({
     required this.child,
+    required this.containerColor,
     super.key,
   });
 
@@ -19,7 +21,7 @@ class TextFieldContainer extends StatelessWidget {
       ),
       width: context.screenWidth * 0.9,
       decoration: BoxDecoration(
-        color: context.seedColor.onTertiary,
+        color: containerColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: child,

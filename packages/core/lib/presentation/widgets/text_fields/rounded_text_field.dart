@@ -8,25 +8,31 @@ class RoundedTextField extends StatelessWidget {
   final FormFieldValidator<String> validator;
   final Function(String) changed;
   final TextEditingController controller;
-  final FocusNode focusNode;
   final bool autoFocus;
+  final FocusNode? focusNode;
   final VoidCallback? onEditingComplete;
+  final TextStyle? hintStyle;
+  final bool? isMap;
 
   const RoundedTextField({
     required this.changed,
     required this.validator,
     required this.hintText,
-    this.icon = Icons.person,
     required this.controller,
-    required this.focusNode,
+    this.icon = Icons.person,
     this.autoFocus = false,
-    required this.onEditingComplete,
+    this.isMap = false,
+    this.focusNode,
+    this.onEditingComplete,
+    this.hintStyle,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
+      containerColor:
+          isMap == false ? context.seedColor.onTertiary : Colors.grey[300]!,
       child: TextFormField(
         controller: controller,
         onEditingComplete: onEditingComplete,
@@ -42,6 +48,7 @@ class RoundedTextField extends StatelessWidget {
             color: context.primaryColor,
           ),
           hintText: hintText,
+          hintStyle: hintStyle,
           border: InputBorder.none,
         ),
       ),

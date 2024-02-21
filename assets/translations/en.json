@@ -15,6 +15,7 @@
     "enterValidPassword": "Minimum 1 upper case,1 lower case,1 special character",
     "enterValidFirstName": "Enter a Valid First Name",
     "enterValidLastName": "Enter a Valid Last Name",
+    "wrongPassword": "Wrong Password",
     "login": "Login",
     "signup": "Sign Up",
     "dontHaveAccount": "Don'\t have an account ? Register",
@@ -22,6 +23,11 @@
     "forgotPassword": "Forgot Your Password ?",
     "firstName": "First Name",
     "lastName": "Last Name",
-    "getStarted": "Get Started"
+    "getStarted": "Get Started",
+    "requestRide": "Request a Ride",
+    "whereTo": "Where to ?",
+    "locationRequired": "Location is required",
+    "egypt": "Egypt",
+    "london": "London"
 
 }

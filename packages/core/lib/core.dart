@@ -26,6 +26,7 @@ export 'package:core/data/utils/data_source.dart';
 export 'package:core/presentation/cubit/app_bloc_observer.dart';
 export 'package:core/presentation/screens/empty_screen.dart';
 export 'package:core/presentation/widgets/buttons/app_button.dart';
+export 'package:core/presentation/widgets/buttons/close_button.dart';
 export 'package:core/presentation/widgets/buttons/back_button.dart';
 export 'package:core/presentation/widgets/language_switcher/language_button.dart';
 export 'package:core/presentation/widgets/text_fields/rounded_text_field.dart';
