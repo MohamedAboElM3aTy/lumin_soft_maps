@@ -4,5 +4,9 @@ import 'package:injectable/injectable.dart';
 
 GetIt getIt = GetIt.instance;
 
-@injectableInit
+@InjectableInit(
+  initializerName: 'init', // default
+  preferRelativeImports: true, // default
+  asExtension: true, // default
+)
 Future<GetIt> initializeDi() async => getIt.init();

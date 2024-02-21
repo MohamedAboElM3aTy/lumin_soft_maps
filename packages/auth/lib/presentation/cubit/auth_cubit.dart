@@ -6,9 +6,9 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class AuthCubit extends Cubit<AuthState> {
-  final AuthService _authService;
+  final AuthBase _authBase;
 
-  AuthCubit(this._authService) : super(const AuthState.initial());
+  AuthCubit(this._authBase) : super(const AuthState.initial());
 
   Future<void> signIn({
     required String email,
@@ -16,7 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     try {
       emit(const AuthState.loading());
-      final user = await _authService.login(email, password);
+      final user = await _authBase.login(email, password);
       if (user != null) {
         emit(AuthState.authenticated(user: user));
       } else {
@@ -28,12 +28,14 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> signUp({
+    required String firstName,
+    required String lastName,
     required String email,
     required String password,
   }) async {
     try {
       emit(const AuthState.loading());
-      final user = await _authService.register(email, password);
+      final user = await _authBase.register(email, password);
       if (user != null) {
         emit(AuthState.authenticated(user: user));
       } else {
@@ -47,7 +49,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> logOut() async {
     try {
       emit(const AuthState.loading());
-      await _authService.logout();
+      await _authBase.logout();
       emit(const AuthState.loggedOut());
     } on GenericApplicationException catch (error) {
       emit(AuthState.error(message: error.toString()));

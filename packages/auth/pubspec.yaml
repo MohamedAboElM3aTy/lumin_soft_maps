@@ -1,0 +1,58 @@
+name: auth
+description: "A new Flutter package project."
+version: 0.0.1
+homepage:
+publish_to: none
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  equatable: ^2.0.3
+  firebase_auth: ^4.17.3
+  get_it: ^7.6.7
+  # injectable: ^2.3.2
+  injectable:
+    git:
+      url: https://github.com/FelixZY/injectable.git
+      path: injectable
+      ref: fix-singleton-environment-filter
+  freezed: ^2.4.6
+  freezed_annotation: ^2.4.1
+  flutter_bloc: ^8.1.4
+  bloc: ^8.1.3
+
+  core: 
+    path: ../core
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+  # injectable_generator: ^2.4.1
+  injectable_generator:
+    git:
+      url: https://github.com/FelixZY/injectable.git
+      path: injectable_generator
+      ref: fix-singleton-environment-filter
+  build_runner:
+
+flutter:
+  assets: 
+    - ../../assets/images/
+    - ../../assets/fonts/
+    - ../../assets/lottie/
+    - ../../assets/svg/
+    - ../../assets/translations/
+
+  # fonts:
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700

@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (_) => LocaleCubit(),
+          lazy: false,
         ),
       ],
       child: BlocBuilder<LocaleCubit, LocaleState>(
@@ -44,7 +46,10 @@ class MyApp extends StatelessWidget {
 
 Future<void> initializeApp() async {
   await EasyLocalization.ensureInitialized();
+  // The dependency injection in 'Core Package'
   await initializeDi();
+  //  The dependency injection in 'Auth Package'
+  await init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 }
 

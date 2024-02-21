@@ -12,7 +12,7 @@
     "password": "Password",
     "email": "Email",
     "enterValidEmail": "Enter a Valid Email",
-    "enterValidPassword": "Enter a Valid Password",
+    "enterValidPassword": "Minimum 1 upper case,1 lower case,1 special character",
     "enterValidFirstName": "Enter a Valid First Name",
     "enterValidLastName": "Enter a Valid Last Name",
     "login": "Login",

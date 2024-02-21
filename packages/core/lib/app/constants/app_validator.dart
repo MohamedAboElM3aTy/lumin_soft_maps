@@ -13,7 +13,7 @@ class AppValidator {
     if (password == null || password.isEmpty || password.length < 8) {
       return false;
     }
-    final exp = RegExp(AppConstants.passwordPatternNumeric);
+    final exp = RegExp(AppConstants.passwordPatternSpecial);
     return exp.hasMatch(password);
   }
 }

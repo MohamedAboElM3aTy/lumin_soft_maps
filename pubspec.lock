@@ -52,7 +52,7 @@ packages:
   auth:
     dependency: "direct main"
     description:
-      path: auth
+      path: "packages/auth"
       relative: true
     source: path
     version: "0.0.1"
@@ -227,7 +227,7 @@ packages:
   core:
     dependency: "direct main"
     description:
-      path: core
+      path: "packages/core"
       relative: true
     source: path
     version: "0.0.1"
@@ -646,7 +646,7 @@ packages:
   home:
     dependency: "direct main"
     description:
-      path: home
+      path: "packages/home"
       relative: true
     source: path
     version: "0.0.1"
@@ -685,19 +685,21 @@ packages:
   injectable:
     dependency: "direct main"
     description:
-      name: injectable
-      sha256: cd3c422e13270c81f64ab73c80406b2b2ed563fe59d0ff2093eb7eee63d0bbeb
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.2"
+      path: injectable
+      ref: fix-singleton-environment-filter
+      resolved-ref: afbc5bbb63a1eeb0d23ceb2bd8fcdb7ca79c0aaf
+      url: "https://github.com/FelixZY/injectable.git"
+    source: git
+    version: "2.3.1"
   injectable_generator:
     dependency: "direct dev"
     description:
-      name: injectable_generator
-      sha256: f9d3c05f0938403f79ad6c6d23ec8e37a7a05ad980b1bf9399493f3e41845788
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.4.1"
+      path: injectable_generator
+      ref: fix-singleton-environment-filter
+      resolved-ref: afbc5bbb63a1eeb0d23ceb2bd8fcdb7ca79c0aaf
+      url: "https://github.com/FelixZY/injectable.git"
+    source: git
+    version: "2.4.0"
   intl:
     dependency: transitive
     description:
@@ -813,7 +815,7 @@ packages:
   map:
     dependency: "direct main"
     description:
-      path: map
+      path: "packages/map"
       relative: true
     source: path
     version: "0.0.1"

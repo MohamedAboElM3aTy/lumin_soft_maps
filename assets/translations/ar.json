@@ -12,7 +12,7 @@
     "password": "كلمة السر",
     "email": "الايميل",
     "enterValidEmail": "ادخل ايميل صحيح",
-    "enterValidPassword": "ادخل كلمة سر صحيحة",
+    "enterValidPassword": "علي الأقل على حرف واحد كبير وحرف صغير واحد وحرف خاص واحد",
     "enterValidFirstName": "ادخل الاسم الاول صحيح",
     "enterValidLastName": "ادخل الاسم الاخير صحيح",
     "login": "سجل دخول",

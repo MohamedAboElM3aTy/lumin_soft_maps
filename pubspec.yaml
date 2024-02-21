@@ -37,7 +37,12 @@ dependencies:
 
   ### dependency Injection
   get_it: ^7.6.7
+  # injectable: ^2.3.2
   injectable:
+    git:
+      url: https://github.com/FelixZY/injectable.git
+      path: injectable
+      ref: fix-singleton-environment-filter
 
   ### Firebase
   firebase_core: ^2.25.3
@@ -69,16 +74,16 @@ dependencies:
 
   ### Packages
   core:
-    path: core/
-    
+    path: packages/core/
+
   auth:
-    path: auth/
+    path: packages/auth/
 
   home:
-    path: home/
+    path: packages/home/
 
   map:
-    path: map/
+    path: packages/map/
 
 dev_dependencies:
   flutter_test:
@@ -86,7 +91,12 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
   ### Generators
+  # injectable_generator: ^2.4.1
   injectable_generator:
+    git:
+      url: https://github.com/FelixZY/injectable.git
+      path: injectable_generator
+      ref: fix-singleton-environment-filter
   build_runner:
   json_serializable: ^6.6.2
 
