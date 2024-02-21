@@ -1,8 +1,4 @@
-import 'package:core/app/constants/app_colors.dart';
-import 'package:core/app/extensions/context.dart';
-import 'package:core/app/extensions/screen_util.dart';
-import 'package:core/presentation/widgets/buttons/app_button.dart';
-import 'package:core/presentation/widgets/text_fields/rounded_text_field.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:map/presentation/widgets/build_row.dart';
 
@@ -21,7 +17,7 @@ class RequestRideContainer extends StatelessWidget {
       left: 0,
       bottom: 20,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 7.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Container(
           width: double.infinity,
           height: context.screenHeight * 0.32,
@@ -39,6 +35,8 @@ class RequestRideContainer extends StatelessWidget {
               children: [
                 RoundedTextField(
                   isMap: true,
+                  controller: locationController,
+                  icon: Icons.search,
                   changed: (location) => locationController.text = location,
                   validator: (location) => location!.isEmpty
                       ? context.getText('locationRequired')
@@ -48,8 +46,6 @@ class RequestRideContainer extends StatelessWidget {
                     fontSize: 20.toFont,
                     fontWeight: FontWeight.w600,
                   ),
-                  icon: Icons.search,
-                  controller: locationController,
                 ),
                 BuildRow(labelText: context.getText('egypt')),
                 const Divider(thickness: 0.4),
@@ -65,9 +61,12 @@ class RequestRideContainer extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                     vertical: 10,
                   ),
+                  // ! To implement Handling Notification
                   onPressed: () {},
                   label: context.getText('requestRide'),
                 ),
+                0.01.toHeight.emptyHeight,
+                // 2.emptyHeight,
               ],
             ),
           ),

@@ -875,6 +875,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  notifications:
+    dependency: "direct main"
+    description:
+      path: "packages/notifications"
+      relative: true
+    source: path
+    version: "0.0.1"
   package_config:
     dependency: transitive
     description:

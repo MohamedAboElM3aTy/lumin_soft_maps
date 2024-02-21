@@ -86,6 +86,9 @@ dependencies:
   map:
     path: packages/map/
 
+  notifications: 
+    path: packages/notifications/
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
