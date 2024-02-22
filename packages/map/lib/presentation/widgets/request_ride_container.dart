@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 import 'package:map/presentation/widgets/build_row.dart';
 
 class RequestRideContainer extends StatelessWidget {
@@ -62,7 +63,7 @@ class RequestRideContainer extends StatelessWidget {
                     vertical: 10,
                   ),
                   // ! To implement Handling Notification
-                  onPressed: () {},
+                  onPressed: _getLocation,
                   label: context.getText('requestRide'),
                 ),
                 0.01.toHeight.emptyHeight,
@@ -74,4 +75,31 @@ class RequestRideContainer extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> _getLocation() async {
+  Location location = Location();
+  bool isServiceEnabled;
+  PermissionStatus isPermissionGranted;
+  LocationData locationData;
+
+  isServiceEnabled = await location.serviceEnabled();
+  if (!isServiceEnabled) {
+    isServiceEnabled = await location.requestService();
+    if (!isServiceEnabled) {
+      return;
+    }
+  }
+
+  isPermissionGranted = await location.hasPermission();
+  if (isPermissionGranted == PermissionStatus.denied) {
+    isPermissionGranted = await location.requestPermission();
+    if (isPermissionGranted != PermissionStatus.granted) {
+      return;
+    }
+  }
+
+  locationData = await location.getLocation();
+  debugPrint(locationData.latitude.toString());
+  debugPrint(locationData.longitude.toString());
 }
