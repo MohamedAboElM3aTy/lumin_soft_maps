@@ -12,4 +12,7 @@ class AppConstants {
   //Registration (1 upper case, 1 lower case, 1 number) length = 8
   static const String passwordPatternNumeric =
       r"(?=^.{8,}$)(?=.*\\d)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$";
+
+
+  static const String apiKey = '419fff699224415c9e7f670c576e253f';
 }
