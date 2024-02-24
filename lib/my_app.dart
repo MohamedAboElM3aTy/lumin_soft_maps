@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lumin_soft_maps/firebase_options.dart';
+import 'package:map/map.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -50,6 +51,8 @@ Future<void> initializeApp() async {
   await initializeDi();
   //  The dependency injection in 'Auth Package'
   await init();
+  //  The dependency injection in 'Map Package'
+  await initMapsGetIt();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 }
 
