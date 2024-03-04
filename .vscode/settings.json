@@ -5,6 +5,8 @@
         "geolocator",
         "latlong",
         "lumin",
-        "screenutil"
+        "mipmap",
+        "screenutil",
+        "sessiontoken"
     ]
 }

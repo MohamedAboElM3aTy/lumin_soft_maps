@@ -1,0 +1,12 @@
+name: lumin_soft_maps
+
+packages:
+  - apps/**
+
+scripts:
+  analyze:
+    exec: dart analyze .  
+
+
+# melos bootstrap
+## Execute flutter pub get 

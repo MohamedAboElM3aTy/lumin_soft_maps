@@ -5,101 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "lumin_soft_maps",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "lumin_soft_maps (profile mode)",
+            "name": "Client lumin_soft_maps",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "program": "./apps/client_app/lib/main.dart"
         },
         {
-            "name": "lumin_soft_maps (release mode)",
+            "name": "Driver lumin_soft_maps",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "program": "./apps/driver_app/lib/main.dart"
         },
-        {
-            "name": "auth",
-            "cwd": "auth",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "auth (profile mode)",
-            "cwd": "auth",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "auth (release mode)",
-            "cwd": "auth",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "core",
-            "cwd": "core",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "core (profile mode)",
-            "cwd": "core",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "core (release mode)",
-            "cwd": "core",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "home",
-            "cwd": "home",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "home (profile mode)",
-            "cwd": "home",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "home (release mode)",
-            "cwd": "home",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "map",
-            "cwd": "map",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "map (profile mode)",
-            "cwd": "map",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "map (release mode)",
-            "cwd": "map",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        }
     ]
 }
