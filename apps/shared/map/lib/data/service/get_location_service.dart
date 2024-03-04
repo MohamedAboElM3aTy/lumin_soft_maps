@@ -10,9 +10,8 @@ class PlaceApiProvider {
 
   final sessionToken;
 
-  final apiKey = Platform.isAndroid
-      ? AppConstants.googleAndroidApiKey
-      : AppConstants.googleIosApiKey;
+  final apiKey =
+      Platform.isAndroid ? Env.googleAndriodApiKey : Env.googleIosApiKey;
 
   PlaceApiProvider(this.sessionToken) {
     _dio.interceptors.add(

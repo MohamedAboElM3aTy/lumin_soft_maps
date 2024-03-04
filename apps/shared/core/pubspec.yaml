@@ -36,6 +36,7 @@ dependencies:
       ref: fix-singleton-environment-filter
   shared_preferences: ^2.0.15
   flash: ^3.1.0
+  envied: ^0.5.3
 
   auth:
     path: ../auth
@@ -65,6 +66,7 @@ dev_dependencies:
       ref: fix-singleton-environment-filter
   build_runner:
   json_serializable: ^6.6.2
+  envied_generator: ^0.5.3
 
 
 flutter:

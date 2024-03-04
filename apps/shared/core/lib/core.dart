@@ -18,6 +18,7 @@ export 'package:core/app/locale/cubit/locale_state.dart';
 export 'package:core/app/services/routes/client_app_router.dart';
 export 'package:core/app/services/routes/driver_app_router.dart';
 export 'package:core/app/services/routes/app_routes.dart';
+export 'package:core/app/services/config/env_config.dart';
 export 'package:core/app/services/theme/client_app_theme.dart';
 export 'package:core/app/services/theme/driver_app_theme.dart';
 export 'package:core/app/services/app_service.dart';

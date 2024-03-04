@@ -1,4 +1,4 @@
-import 'package:core/app/constants/app_constants.dart';
+import 'package:core/app/services/config/env_config.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:map/data/model/map_response_model.dart';
@@ -13,7 +13,7 @@ abstract class FindCityService {
   factory FindCityService(Dio dio) => _FindCityService(dio);
 
   @GET(
-    'https://api.geoapify.com/v1/geocode/search?city={city}&text={text}&street={street}&format=json&apiKey=${AppConstants.apiKey}',
+    'https://api.geoapify.com/v1/geocode/search?city={city}&text={text}&street={street}&format=json&apiKey=${Env.apiKey}',
   )
   Future<MapsResultApiModel> getCityLocation({
     @Path('city') required String city,
@@ -21,4 +21,3 @@ abstract class FindCityService {
     @Path('street') required String street,
   });
 }
-

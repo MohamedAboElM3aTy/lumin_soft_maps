@@ -13,20 +13,9 @@ class AppConstants {
   static const String passwordPatternNumeric =
       r"(?=^.{8,}$)(?=.*\\d)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$";
 
-  static const String apiKey = '419fff699224415c9e7f670c576e253f';
-
   static const String searchApi =
       'https://maps.googleapis.com/maps/api/place/autocomplete/json';
 
-  static const String detailsApi = 'https://maps.googleapis.com/maps/api/place/details/json';
-
-  static const String googleAndroidApiKey =
-      'AIzaSyCo8LvaVzA8E4skc1sMFwFCrauG0b6nal4';
-
-  static const String googleIosApiKey =
-      'AIzaSyCKi3R9iPybjgk0Gcw2xGEt_DKYi73md8U';
+  static const String detailsApi =
+      'https://maps.googleapis.com/maps/api/place/details/json';
 }
-
-
-
- 
