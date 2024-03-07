@@ -84,7 +84,7 @@ dependencies:
     path: ../shared/home/
 
   map:
-    path: ../shared/map/
+    path: packages/map/
 
   chat:
     path: ../shared/chat/

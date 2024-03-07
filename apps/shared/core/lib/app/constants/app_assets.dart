@@ -8,7 +8,7 @@ class AppAssets {
       'lumin_soft_maps/../assets/images/lumin.png';
 
   static const String driverAppImage =
-    '../../../../../assets/images/black_logo.png';
-    
+      'lumin_soft_maps/../assets/images/black_pure_logo.png';
+
   static const String emptyImage = 'lumin_soft_maps/../assets/svg/empty.svg';
 }

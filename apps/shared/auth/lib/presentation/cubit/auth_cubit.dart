@@ -1,6 +1,8 @@
 import 'package:auth/data/services/auth_service.dart';
+import 'package:auth/entity/user.dart';
 import 'package:auth/presentation/cubit/auth_state.dart';
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core/core.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,12 +15,19 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signIn({
     required String email,
     required String password,
+    required bool isAppClient,
   }) async {
     try {
       emit(const AuthState.loading());
       final user = await _authBase.login(email, password);
       if (user != null) {
-        emit(AuthState.authenticated(user: user));
+        final authUser =
+            await FirebaseFirestore.instance.doc('users/${user.uid}').get();
+        final userData = AppUser.fromMap(authUser.data()!);
+        emit(
+          AuthState.authenticated(
+              isUserInHisApp: userData.isClient == isAppClient),
+        );
       } else {
         emit(const AuthState.unAuthenticated());
       }
@@ -32,12 +41,24 @@ class AuthCubit extends Cubit<AuthState> {
     required String lastName,
     required String email,
     required String password,
+    required bool isAppClient,
   }) async {
     try {
       emit(const AuthState.loading());
       final user = await _authBase.register(email, password);
       if (user != null) {
-        emit(AuthState.authenticated(user: user));
+        await FirebaseFirestore.instance.doc('users/${user.uid}').set(
+              AppUser(
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
+                isClient: isAppClient,
+              ).toMap(),
+            );
+        emit(
+          const AuthState.authenticated(isUserInHisApp: true),
+        );
       } else {
         emit(const AuthState.unAuthenticated());
       }

@@ -41,6 +41,8 @@
     "ok": "Ok",
     "pleaseWait": "Please Wait For the driver to accept your Request.",
     "requestedRide": "You Have Requested a Ride to ",
-    "historyRides": "History Rides :"
+    "historyRides": "History Rides :",
+    "userNotRegistered": "User Not Registered",
+    "noLocation": "No Location Added Yet"
 
 }

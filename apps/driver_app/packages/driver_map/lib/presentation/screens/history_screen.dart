@@ -1,8 +1,9 @@
 import 'package:core/core.dart';
+import 'package:driver_map/presentation/widgets/history_rides.dart';
 import 'package:flutter/material.dart';
 
-class HistoryRides extends StatelessWidget {
-  const HistoryRides({super.key});
+class HistoryScreen extends StatelessWidget {
+  const HistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class HistoryRides extends StatelessWidget {
                   ),
                 ],
               ),
+              const HistoryRides(),
             ],
           ),
         ),

@@ -147,7 +147,6 @@ class _RequestRideContainerState extends State<RequestRideContainer> {
   Future<void> _searchAndSubmit() async {
     _formKey.currentState!.save();
     if (_formKey.currentState!.validate()) {
-      // final streetName = Uri.encodeComponent(widget.streetController.text);
       final streetName = widget.streetController.text;
       final user = FirebaseAuth.instance.currentUser;
       final collection = FirebaseFirestore.instance.collection('location');
@@ -161,11 +160,11 @@ class _RequestRideContainerState extends State<RequestRideContainer> {
       await _showDialog(streetName: streetName);
       await collection.add(
         {
+          'createdAt': Timestamp.now(),
+          'userId': user!.uid,
           'userLatitude': latitude,
           'userLongitude': longitude,
-          'userId': user!.uid,
           'userEmail': user.email,
-          'createdAt': Timestamp.now(),
           'headLocation': streetName,
           'headLatitude': headLatitude,
           'headLongitude': headLongitude,

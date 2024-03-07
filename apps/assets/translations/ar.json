@@ -41,6 +41,8 @@
     "ok": "موافق",
     "pleaseWait": "برجاء الانتظار الي ان يوافق السائق علي الطلب",
     "requestedRide": "تم طلب الرحلة الي",
-    "historyRides": "تاريخ الرحلات"
+    "historyRides": "تاريخ الرحلات",
+    "userNotRegistered":"المستخدم غير مسجل",
+    "noLocation": "لا يوجد مكان بعد"
 
 }

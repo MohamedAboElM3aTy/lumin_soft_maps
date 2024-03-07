@@ -15,7 +15,7 @@ dependencies:
     path: ../../../shared/core/
 
   map:
-    path: ../../../shared/map/
+    path: ../../../client_app/packages/map
 
   url_launcher: ^6.2.5
   uuid: ^4.3.3

@@ -20,7 +20,7 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) authenticated,
+    required TResult Function(bool isUserInHisApp) authenticated,
     required TResult Function() loggedOut,
     required TResult Function() unAuthenticated,
     required TResult Function(String message) error,
@@ -30,7 +30,7 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? authenticated,
+    TResult? Function(bool isUserInHisApp)? authenticated,
     TResult? Function()? loggedOut,
     TResult? Function()? unAuthenticated,
     TResult? Function(String message)? error,
@@ -40,7 +40,7 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? authenticated,
+    TResult Function(bool isUserInHisApp)? authenticated,
     TResult Function()? loggedOut,
     TResult Function()? unAuthenticated,
     TResult Function(String message)? error,
@@ -137,7 +137,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) authenticated,
+    required TResult Function(bool isUserInHisApp) authenticated,
     required TResult Function() loggedOut,
     required TResult Function() unAuthenticated,
     required TResult Function(String message) error,
@@ -150,7 +150,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? authenticated,
+    TResult? Function(bool isUserInHisApp)? authenticated,
     TResult? Function()? loggedOut,
     TResult? Function()? unAuthenticated,
     TResult? Function(String message)? error,
@@ -163,7 +163,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? authenticated,
+    TResult Function(bool isUserInHisApp)? authenticated,
     TResult Function()? loggedOut,
     TResult Function()? unAuthenticated,
     TResult Function(String message)? error,
@@ -263,7 +263,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) authenticated,
+    required TResult Function(bool isUserInHisApp) authenticated,
     required TResult Function() loggedOut,
     required TResult Function() unAuthenticated,
     required TResult Function(String message) error,
@@ -276,7 +276,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? authenticated,
+    TResult? Function(bool isUserInHisApp)? authenticated,
     TResult? Function()? loggedOut,
     TResult? Function()? unAuthenticated,
     TResult? Function(String message)? error,
@@ -289,7 +289,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? authenticated,
+    TResult Function(bool isUserInHisApp)? authenticated,
     TResult Function()? loggedOut,
     TResult Function()? unAuthenticated,
     TResult Function(String message)? error,
@@ -355,7 +355,7 @@ abstract class _$$AuthenticatedImplCopyWith<$Res> {
           _$AuthenticatedImpl value, $Res Function(_$AuthenticatedImpl) then) =
       __$$AuthenticatedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({User user});
+  $Res call({bool isUserInHisApp});
 }
 
 /// @nodoc
@@ -369,13 +369,13 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? isUserInHisApp = null,
   }) {
     return _then(_$AuthenticatedImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
+      isUserInHisApp: null == isUserInHisApp
+          ? _value.isUserInHisApp
+          : isUserInHisApp // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -383,14 +383,14 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthenticatedImpl implements _Authenticated {
-  const _$AuthenticatedImpl({required this.user});
+  const _$AuthenticatedImpl({required this.isUserInHisApp});
 
   @override
-  final User user;
+  final bool isUserInHisApp;
 
   @override
   String toString() {
-    return 'AuthState.authenticated(user: $user)';
+    return 'AuthState.authenticated(isUserInHisApp: $isUserInHisApp)';
   }
 
   @override
@@ -398,11 +398,12 @@ class _$AuthenticatedImpl implements _Authenticated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthenticatedImpl &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.isUserInHisApp, isUserInHisApp) ||
+                other.isUserInHisApp == isUserInHisApp));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType, isUserInHisApp);
 
   @JsonKey(ignore: true)
   @override
@@ -415,12 +416,12 @@ class _$AuthenticatedImpl implements _Authenticated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) authenticated,
+    required TResult Function(bool isUserInHisApp) authenticated,
     required TResult Function() loggedOut,
     required TResult Function() unAuthenticated,
     required TResult Function(String message) error,
   }) {
-    return authenticated(user);
+    return authenticated(isUserInHisApp);
   }
 
   @override
@@ -428,12 +429,12 @@ class _$AuthenticatedImpl implements _Authenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? authenticated,
+    TResult? Function(bool isUserInHisApp)? authenticated,
     TResult? Function()? loggedOut,
     TResult? Function()? unAuthenticated,
     TResult? Function(String message)? error,
   }) {
-    return authenticated?.call(user);
+    return authenticated?.call(isUserInHisApp);
   }
 
   @override
@@ -441,14 +442,14 @@ class _$AuthenticatedImpl implements _Authenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? authenticated,
+    TResult Function(bool isUserInHisApp)? authenticated,
     TResult Function()? loggedOut,
     TResult Function()? unAuthenticated,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
-      return authenticated(user);
+      return authenticated(isUserInHisApp);
     }
     return orElse();
   }
@@ -498,10 +499,10 @@ class _$AuthenticatedImpl implements _Authenticated {
 }
 
 abstract class _Authenticated implements AuthState {
-  const factory _Authenticated({required final User user}) =
+  const factory _Authenticated({required final bool isUserInHisApp}) =
       _$AuthenticatedImpl;
 
-  User get user;
+  bool get isUserInHisApp;
   @JsonKey(ignore: true)
   _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -547,7 +548,7 @@ class _$LoggedOutImpl implements _LoggedOut {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) authenticated,
+    required TResult Function(bool isUserInHisApp) authenticated,
     required TResult Function() loggedOut,
     required TResult Function() unAuthenticated,
     required TResult Function(String message) error,
@@ -560,7 +561,7 @@ class _$LoggedOutImpl implements _LoggedOut {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? authenticated,
+    TResult? Function(bool isUserInHisApp)? authenticated,
     TResult? Function()? loggedOut,
     TResult? Function()? unAuthenticated,
     TResult? Function(String message)? error,
@@ -573,7 +574,7 @@ class _$LoggedOutImpl implements _LoggedOut {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? authenticated,
+    TResult Function(bool isUserInHisApp)? authenticated,
     TResult Function()? loggedOut,
     TResult Function()? unAuthenticated,
     TResult Function(String message)? error,
@@ -673,7 +674,7 @@ class _$UnAuthenticatedImpl implements _UnAuthenticated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) authenticated,
+    required TResult Function(bool isUserInHisApp) authenticated,
     required TResult Function() loggedOut,
     required TResult Function() unAuthenticated,
     required TResult Function(String message) error,
@@ -686,7 +687,7 @@ class _$UnAuthenticatedImpl implements _UnAuthenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? authenticated,
+    TResult? Function(bool isUserInHisApp)? authenticated,
     TResult? Function()? loggedOut,
     TResult? Function()? unAuthenticated,
     TResult? Function(String message)? error,
@@ -699,7 +700,7 @@ class _$UnAuthenticatedImpl implements _UnAuthenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? authenticated,
+    TResult Function(bool isUserInHisApp)? authenticated,
     TResult Function()? loggedOut,
     TResult Function()? unAuthenticated,
     TResult Function(String message)? error,
@@ -825,7 +826,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) authenticated,
+    required TResult Function(bool isUserInHisApp) authenticated,
     required TResult Function() loggedOut,
     required TResult Function() unAuthenticated,
     required TResult Function(String message) error,
@@ -838,7 +839,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? authenticated,
+    TResult? Function(bool isUserInHisApp)? authenticated,
     TResult? Function()? loggedOut,
     TResult? Function()? unAuthenticated,
     TResult? Function(String message)? error,
@@ -851,7 +852,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? authenticated,
+    TResult Function(bool isUserInHisApp)? authenticated,
     TResult Function()? loggedOut,
     TResult Function()? unAuthenticated,
     TResult Function(String message)? error,

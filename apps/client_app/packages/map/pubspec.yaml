@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
     
   core:
-    path: ../core
+    path: ../../../shared/core
 
   url_launcher: ^6.2.5
   uuid: ^4.3.3

@@ -1,14 +1,15 @@
 import 'package:auth/di/injection_container.dart';
 import 'package:auth/presentation/cubit/auth_cubit.dart';
 import 'package:auth/presentation/cubit/auth_state.dart';
+import 'package:auth/presentation/widgets/password_requirements.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthScreen extends StatefulWidget {
-  const AuthScreen({super.key, required this.isClient});
+  const AuthScreen({super.key, required this.isClientApp});
 
-  final bool isClient;
+  final bool isClientApp;
 
   @override
   State<AuthScreen> createState() => _AuthScreenState();
@@ -148,37 +149,9 @@ class _AuthScreenState extends State<AuthScreen> {
                     },
                   ),
                   15.emptyHeight,
-                  Align(
-                    alignment: Alignment.center,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '•  Password Must have 1 Capital letter',
-                          style: context.textTheme.labelMedium?.copyWith(
-                            fontSize: 12.toFont,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        3.emptyHeight,
-                        Text(
-                          '•  Password Must have 1 Small letter',
-                          style: context.textTheme.labelMedium?.copyWith(
-                            fontSize: 12.toFont,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        3.emptyHeight,
-                        Text(
-                          '•  Password Must have 1 special Character',
-                          style: context.textTheme.labelMedium?.copyWith(
-                            fontSize: 12.toFont,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  _authForm == AuthForm.register
+                      ? const PasswordRequirements()
+                      : const SizedBox.shrink(),
                   30.emptyHeight,
                   _authForm == AuthForm.login
                       ? Align(
@@ -198,16 +171,24 @@ class _AuthScreenState extends State<AuthScreen> {
                     listener: (context, state) {
                       state.maybeWhen(
                         orElse: () => null,
-                        authenticated: (user) {
-                          context.showSnackBar(
-                            message: context.getText('loginSuccess'),
-                            snackBarType: SnackBarStates.success,
-                          );
-                          widget.isClient
-                              ? context.navigator.pushReplacementNamed(
-                                  AppRoutes.mapClientRoute)
-                              : context.navigator.pushReplacementNamed(
-                                  AppRoutes.mapDriverRoute);
+                        authenticated: (isUserInHisApp) async {
+                          if (isUserInHisApp) {
+                            widget.isClientApp
+                                ? context.navigator.pushReplacementNamed(
+                                    AppRoutes.mapClientRoute)
+                                : context.navigator.pushReplacementNamed(
+                                    AppRoutes.mapDriverRoute);
+                            _formKey.currentState!.reset();
+                            context.showSnackBar(
+                              message: context.getText('loginSuccess'),
+                              snackBarType: SnackBarStates.success,
+                            );
+                          } else {
+                            return context.showSnackBar(
+                              message: context.getText('userNotRegistered'),
+                              snackBarType: SnackBarStates.error,
+                            );
+                          }
                         },
                         error: (message) {
                           context.showSnackBar(
@@ -231,17 +212,21 @@ class _AuthScreenState extends State<AuthScreen> {
                         onPressed: () async {
                           _formKey.currentState!.save();
                           if (_formKey.currentState!.validate()) {
-                            _authForm == AuthForm.login
-                                ? await _authCubit.signIn(
-                                    email: _emailController.text,
-                                    password: _passwordController.text,
-                                  )
-                                : await _authCubit.signUp(
-                                    firstName: _firstNameController.text,
-                                    lastName: _lastNameController.text,
-                                    email: _emailController.text,
-                                    password: _passwordController.text,
-                                  );
+                            if (_authForm == AuthForm.login) {
+                              await _authCubit.signIn(
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                                isAppClient: widget.isClientApp,
+                              );
+                            } else {
+                              await _authCubit.signUp(
+                                firstName: _firstNameController.text,
+                                lastName: _lastNameController.text,
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                                isAppClient: widget.isClientApp,
+                              );
+                            }
                           }
                         },
                         label: _authForm == AuthForm.login

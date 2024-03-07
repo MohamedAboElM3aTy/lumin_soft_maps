@@ -45,7 +45,7 @@ dependencies:
     path: ../home
 
   map:
-    path: ../map
+    path: ../../client_app/packages/map
 
   chat:
     path: ../chat

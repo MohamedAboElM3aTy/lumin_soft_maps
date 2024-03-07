@@ -4,8 +4,7 @@ import 'package:core/app/constants/app_assets.dart';
 import 'package:core/app/services/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:home/presentation/screens/home_screen.dart';
-import 'package:map/presentation/screens/client_map_screen.dart';
-import 'package:map/presentation/screens/search_screen.dart';
+import 'package:map/map.dart';
 
 Route<dynamic> onGenerateClient(
   RouteSettings settings,
@@ -20,7 +19,7 @@ Route<dynamic> onGenerateClient(
       );
     case AppRoutes.authRoute:
       return MaterialPageRoute(
-        builder: (_) => const AuthScreen(isClient: true),
+        builder: (_) => const AuthScreen(isClientApp: true),
       );
     case AppRoutes.mapClientRoute:
       return MaterialPageRoute(

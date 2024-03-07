@@ -1,4 +1,3 @@
-import 'package:core/app/constants/app_assets.dart';
 import 'package:core/app/extensions/context.dart';
 import 'package:core/app/extensions/screen_util.dart';
 import 'package:core/app/services/routes/app_routes.dart';
@@ -34,7 +33,7 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image(
-                  image: const AssetImage(AppAssets.clientAppImage),
+                  image: AssetImage(imageName),
                   width: context.screenWidth * 0.7,
                 ),
                 Expanded(

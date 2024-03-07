@@ -16,7 +16,7 @@ Route<dynamic> onGenerateDriver(RouteSettings settings) {
       );
     case AppRoutes.authRoute:
       return MaterialPageRoute(
-        builder: (_) => const AuthScreen(isClient: false),
+        builder: (_) => const AuthScreen(isClientApp: false),
       );
     case AppRoutes.mapDriverRoute:
       return MaterialPageRoute(
@@ -24,7 +24,7 @@ Route<dynamic> onGenerateDriver(RouteSettings settings) {
       );
     case AppRoutes.historyRoute:
       return MaterialPageRoute(
-        builder: (_) => const HistoryRides(),
+        builder: (_) => const HistoryScreen(),
       );
     default:
       return MaterialPageRoute(
