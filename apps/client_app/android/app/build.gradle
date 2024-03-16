@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.lumin_soft_maps"
-    compileSdk 34
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -46,10 +46,10 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion 23
-        targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
         multiDexEnabled true
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode 10
+        versionName flutterVersionName
     }
 
     buildTypes {
@@ -68,4 +68,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    // implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
