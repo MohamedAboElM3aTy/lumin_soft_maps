@@ -1,21 +1,17 @@
 import 'package:core/core.dart';
+import 'package:driver_map/domain/rides_request.dart';
 import 'package:flutter/material.dart';
 
 class RidesCard extends StatelessWidget {
   const RidesCard({
     super.key,
-    required this.clientEmail,
-    required this.headLocation,
-    required this.headLatitude,
-    required this.headLongitude,
+    required this.rideRequest,
     required this.onDelete,
+    required this.onAccept,
   });
-
-  final String clientEmail;
-  final String headLocation;
-  final double headLatitude;
-  final double headLongitude;
+  final RideRequest rideRequest;
   final VoidCallback onDelete;
+  final VoidCallback onAccept;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +27,13 @@ class RidesCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Client email: $clientEmail'),
+              Text('Client Email: ${rideRequest.clientEmail}'),
               10.emptyHeight,
-              Text('To: $headLocation'),
+              Text('To: ${rideRequest.headLocation}'),
               10.emptyHeight,
-              Text('Latitude: $headLatitude'),
+              Text('Latitude: ${rideRequest.headLatitude}'),
               10.emptyHeight,
-              Text('Longitude: $headLongitude'),
+              Text('Longitude: ${rideRequest.headLongitude}'),
               10.emptyHeight,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -45,33 +41,15 @@ class RidesCard extends StatelessWidget {
                   AppButton(
                     width: context.screenWidth * 0.4,
                     height: context.screenHeight * 0.05,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 4.0,
-                      // horizontal: 10,
-                    ),
-                    label: 'Accept',
-                    onPressed: () {
-                      // Implement acceptance and draw map on both apps
-                    },
+                    padding: const EdgeInsets.symmetric(vertical: 4.0),
+                    label: context.getText('accept'),
+                    onPressed: onAccept,
                   ),
                   AppButton(
                     width: context.screenWidth * 0.4,
                     height: context.screenHeight * 0.05,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 4.0,
-                      // horizontal: 10,
-                    ),
-                    label: 'Reject',
-                    // onPressed: () async {
-                    //   // final collection = await FirebaseFirestore.instance
-                    //       .collection('location')
-                    //       .get();
-                    //   // ! This deleted all the documents in the collection
-                    //   // ? I want to delete the document with the same email or id
-                    //   for (var location in collection.docChanges) {
-                    //     location.doc.reference.delete();
-                    //   }
-                    // },
+                    padding: const EdgeInsets.symmetric(vertical: 4.0),
+                    label: context.getText('reject'),
                     onPressed: onDelete,
                     backgroundColor: const Color.fromARGB(255, 242, 13, 47),
                   ),

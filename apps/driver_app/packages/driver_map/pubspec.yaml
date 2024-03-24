@@ -21,6 +21,9 @@ dependencies:
   uuid: ^4.3.3
   firebase_auth: ^4.17.3
   cloud_firestore: ^4.15.4
+  firebase_analytics: ^10.8.10
+  firebase_messaging: ^14.7.16
+  fluttertoast: ^8.2.4
   equatable: ^2.0.3
   dio: ^5.4.1
   retrofit: ^4.1.0

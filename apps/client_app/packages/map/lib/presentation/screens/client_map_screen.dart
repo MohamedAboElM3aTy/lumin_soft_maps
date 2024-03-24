@@ -10,7 +10,9 @@ import 'package:map/presentation/widgets/request_ride_container.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ClientMapScreen extends StatefulWidget {
-  const ClientMapScreen({super.key});
+  const ClientMapScreen({
+    super.key,
+  });
 
   @override
   State<ClientMapScreen> createState() => _ClientMapScreenState();
@@ -20,12 +22,31 @@ class _ClientMapScreenState extends State<ClientMapScreen> {
   late final TextEditingController _streetController;
   late final MapsCubit _mapsCubit;
   List<Marker> markers = [];
+  String rideRequestId = '';
+
+  // StreamSubscription<DocumentSnapshot>? rideStatusSubscription;
 
   @override
   void initState() {
     _streetController = TextEditingController();
     _mapsCubit = mapsGetIt<MapsCubit>();
     _addInitialMarker();
+    // final rideStatusCollection =
+    //     FirebaseFirestore.instance.collection('rideStatus').doc(rideRequestId);
+    // rideStatusSubscription = rideStatusCollection.snapshots().listen(
+    //   (snapshot) {
+    //     if (snapshot.exists) {
+    //       final status = snapshot.data()!['status'];
+    //       if (status == 'accepted') {
+    //         debugPrint('Driver accept the ride');
+    //       } else if (status == 'rejected') {
+    //         debugPrint('Driver reject the ride');
+    //       }
+    //     } else {
+    //       debugPrint('Ride request not found');
+    //     }
+    //   },
+    // );
     super.initState();
   }
 

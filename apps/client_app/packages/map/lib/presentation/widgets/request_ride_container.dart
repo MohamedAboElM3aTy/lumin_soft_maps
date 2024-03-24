@@ -168,6 +168,7 @@ class _RequestRideContainerState extends State<RequestRideContainer> {
           'headLocation': streetName,
           'headLatitude': headLatitude,
           'headLongitude': headLongitude,
+          'status': 'pending'
         },
       );
       _formKey.currentState!.reset();

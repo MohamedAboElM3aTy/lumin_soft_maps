@@ -67,7 +67,13 @@ class _DriverMapScreenState extends State<DriverMapScreen> {
                       AppRoutes.historyRoute,
                     ),
                   ),
-                  const LanguageButton(),
+                  MapsFloatingButton(
+                    icon: Icons.chat_bubble,
+                    onTap: () => context.navigator.pushNamed(
+                      AppRoutes.chatRoute,
+                      arguments: {},
+                    ),
+                  ),
                 ],
               ),
             ),
