@@ -24,48 +24,42 @@ class ChatTopRowState extends State<ChatTopRow> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: context.screenHeight * 0.07,
-      decoration: BoxDecoration(
-        color: context.primaryColor,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          BlocConsumer<AuthCubit, AuthState>(
-            bloc: _authCubit,
-            listener: (context, state) {
-              state.maybeWhen(
-                orElse: () => null,
-                error: (message) {
-                  context.showSnackBar(
-                    message: message,
-                    snackBarType: SnackBarStates.error,
-                  );
-                },
-                loggedOut: () {
-                  context.showSnackBar(
-                    message: context.getText('logOutSuccess'),
-                    snackBarType: SnackBarStates.success,
-                  );
-                  context.navigator.popAndPushNamed(AppRoutes.homeRoute);
-                },
-              );
-            },
-            builder: (context, state) {
-              return IconButton(
-                onPressed: () => _logOut(context),
-                icon: const Icon(
-                  Icons.logout,
-                  size: 28.0,
-                  color: Colors.white,
-                ),
-              );
-            },
-          ),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const LanguageButton(),
+        BlocConsumer<AuthCubit, AuthState>(
+          bloc: _authCubit,
+          listener: (context, state) {
+            state.maybeWhen(
+              orElse: () {},
+              error: (message) {
+                context.showSnackBar(
+                  message: message,
+                  snackBarType: SnackBarStates.error,
+                );
+              },
+              loggedOut: () {
+                context.showSnackBar(
+                  message: context.getText('logOutSuccess'),
+                  snackBarType: SnackBarStates.success,
+                );
+                context.navigator.popAndPushNamed(AppRoutes.homeRoute);
+              },
+            );
+          },
+          builder: (context, state) {
+            return IconButton(
+              onPressed: () => _logOut(context),
+              icon: Icon(
+                Icons.logout,
+                size: 28.0,
+                color: context.primaryColor,
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }

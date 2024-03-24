@@ -1,10 +1,9 @@
 import 'dart:convert';
 
-import 'package:core/app/constants/app_assets.dart';
+import 'package:core/app/constants/app_constants.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:injectable/injectable.dart';
 
 final localNotification = FlutterLocalNotificationsPlugin();
 const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -14,7 +13,6 @@ const initSettings = InitializationSettings(
   iOS: iosInit,
 );
 
-@lazySingleton
 class NotificationService {
   late final FirebaseMessaging _firebaseMessaging;
 
@@ -23,8 +21,8 @@ class NotificationService {
   }
 
   Future<void> initialize() async {
-    final fcmToken = await _firebaseMessaging.getToken();
-    debugPrint('FCM token: $fcmToken');
+    AppConstants.fcmToken = await _firebaseMessaging.getToken();
+    debugPrint('FCM token: ${AppConstants.fcmToken}');
     await localNotification.initialize(initSettings);
     localNotification
         .resolvePlatformSpecificImplementation<
@@ -46,14 +44,15 @@ Future<void> onBackgroundMessage(RemoteMessage message) async {
 }
 
 Future<void> _showNotification(RemoteMessage message) async {
+  await FirebaseMessaging.instance.subscribeToTopic('location');
   const androidDetails = AndroidNotificationDetails(
     "channelId",
     "notification",
-    channelDescription: "Lumin Soft Maps",
+    channelDescription: "Lumin Soft",
     importance: Importance.max,
     priority: Priority.max,
     playSound: true,
-    icon: AppAssets.clientAppImage,
+    icon: "assets/images/new_logo.jpg",
   );
   const iosDetails = DarwinNotificationDetails();
   const generalNotificationDetails = NotificationDetails(

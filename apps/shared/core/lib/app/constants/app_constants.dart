@@ -18,4 +18,6 @@ class AppConstants {
 
   static const String detailsApi =
       'https://maps.googleapis.com/maps/api/place/details/json';
+
+  static String? fcmToken; 
 }

@@ -1,4 +1,5 @@
 import 'package:auth/presentation/screens/auth_screen.dart';
+import 'package:chat/presentation/screens/chat_screen.dart';
 import 'package:core/app/constants/app_assets.dart';
 import 'package:core/app/services/routes/app_routes.dart';
 import 'package:driver_map/driver_map.dart';
@@ -25,6 +26,10 @@ Route<dynamic> onGenerateDriver(RouteSettings settings) {
     case AppRoutes.historyRoute:
       return MaterialPageRoute(
         builder: (_) => const HistoryScreen(),
+      );
+    case AppRoutes.chatRoute:
+      return MaterialPageRoute(
+        builder: (_) => const ChatScreen(),
       );
     default:
       return MaterialPageRoute(
