@@ -15,6 +15,7 @@ class ChatMessages extends StatelessWidget {
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('Chat')
+          // ! .where('userId', isEqualTo: authenticatedUser.uid)
           .orderBy(
             'createdAt',
             descending: true,
