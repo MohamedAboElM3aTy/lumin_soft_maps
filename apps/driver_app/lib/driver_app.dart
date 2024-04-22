@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notifications/services/notification_service.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class DriverApp extends StatelessWidget {
   const DriverApp({super.key});
@@ -31,6 +34,7 @@ class DriverApp extends StatelessWidget {
             minTextAdapt: true,
             useInheritedMediaQuery: true,
             child: MaterialApp(
+              navigatorKey: navigatorKey,
               locale: context.locale,
               supportedLocales: localeCubit.supportedLocales,
               localizationsDelegates: context.localizationDelegates,
@@ -54,6 +58,14 @@ Future<void> initializeDriverApp() async {
   //  The dependency injection in 'Driver Map Package'
   await initDriverMapsGetIt();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await NotificationService().initialize(
+    // ! topic: 'rideRequests',
+    onNavigate: () {
+      debugPrint('Navigation in the driver app happened');
+      // Navigator.of(navigatorKey.currentContext!)
+      //     .pushNamed(AppRoutes.historyRoute);
+    },
+  );
 }
 
 void preventLandScape() {

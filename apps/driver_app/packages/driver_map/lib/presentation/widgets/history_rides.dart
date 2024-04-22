@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core/core.dart';
 import 'package:driver_map/domain/rides_request.dart';
 import 'package:driver_map/presentation/widgets/rides_card.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class HistoryRides extends StatelessWidget {
@@ -12,7 +11,7 @@ class HistoryRides extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: FirebaseFirestore.instance
-          .collection('location')
+          .collection('rideRequests')
           .orderBy(
             'createdAt',
             descending: true,
@@ -20,15 +19,13 @@ class HistoryRides extends StatelessWidget {
           .snapshots(),
       builder: (ctx, locationSnapshots) {
         if (locationSnapshots.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator.adaptive(),
-          );
+          return const CircularProgressIndicator.adaptive();
         }
         if (!locationSnapshots.hasData ||
             locationSnapshots.data!.docs.isEmpty) {
           return Center(
             child: Text(
-              context.getText('noLocation'),
+              context.getText('noRides'),
               style: context.textTheme.labelMedium?.copyWith(
                 fontSize: 20.toFont,
                 fontWeight: FontWeight.bold,
@@ -41,34 +38,47 @@ class HistoryRides extends StatelessWidget {
                 message: locationSnapshots.error.toString(),
               )
             : null;
-        final loadedLocations = locationSnapshots.data!.docs;
+        final loadedRides = locationSnapshots.data!.docs;
         return Expanded(
           child: ListView.separated(
             separatorBuilder: (context, index) => 20.emptyHeight,
-            itemCount: loadedLocations.length,
+            itemCount: loadedRides.length,
             itemBuilder: (ctx, index) {
-              final headLocation = loadedLocations[index].data();
+              final rideRequest = loadedRides[index].data();
               return RidesCard(
                 rideRequest: RideRequest(
-                  clientEmail: headLocation['userEmail'],
-                  headLocation: headLocation['headLocation'],
-                  headLatitude: headLocation['headLatitude'],
-                  headLongitude: headLocation['headLongitude'],
+                  clientEmail: rideRequest['userEmail'],
+                  headLocation: rideRequest['headLocation'],
+                  headLatitude: rideRequest['headLatitude'],
+                  headLongitude: rideRequest['headLongitude'],
                 ),
                 onDelete: () async {
-                  await loadedLocations[index].reference.delete();
+                  await loadedRides[index].reference.delete();
                 },
                 onAccept: () async {
                   debugPrint('Accept Button Tapped');
-                  final rideId = loadedLocations[index].id;
-                  FirebaseMessaging.instance.subscribeToTopic('location');
+                  final rideId = loadedRides[index].id;
+                  final responseCollection =
+                      FirebaseFirestore.instance.collection('rideResponses');
                   try {
                     await FirebaseFirestore.instance
-                        .collection('location')
+                        .collection('rideRequests')
                         .doc(rideId)
                         .update(
-                      {'status': 'accepted'},
+                      {
+                        'status': 'accepted',
+                      },
                     );
+                    await responseCollection.add(
+                      {
+                        'ride_id': rideId,
+                        'status': 'accepted',
+                        'headLocation': rideRequest['headLocation'],
+                        'time': Timestamp.now(),
+                      },
+                    );
+                    // TODO: To Refactor to push to the chat directly when accepting ride
+                    context.navigator.pushNamed(AppRoutes.chatRoute);
                   } catch (error) {
                     debugPrint(error.toString());
                   }

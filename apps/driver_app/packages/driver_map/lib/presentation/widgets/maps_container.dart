@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
 class WaitingMapsContainer extends StatefulWidget {
-  const WaitingMapsContainer({
-    super.key,
-  });
+  const WaitingMapsContainer({super.key});
 
   @override
   State<WaitingMapsContainer> createState() => _WaitingMapsContainerState();

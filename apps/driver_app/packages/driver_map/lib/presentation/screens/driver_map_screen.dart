@@ -62,16 +62,18 @@ class _DriverMapScreenState extends State<DriverMapScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   MapsFloatingButton(
-                    icon: Icons.history,
-                    onTap: () => context.navigator.pushNamed(
-                      AppRoutes.historyRoute,
-                    ),
-                  ),
-                  MapsFloatingButton(
+                    heroTag: 'map_floating_button_2',
                     icon: Icons.chat_bubble,
                     onTap: () => context.navigator.pushNamed(
                       AppRoutes.chatRoute,
                       arguments: {},
+                    ),
+                  ),
+                  MapsFloatingButton(
+                    heroTag: 'history_button',
+                    icon: Icons.history,
+                    onTap: () => context.navigator.pushNamed(
+                      AppRoutes.historyRoute,
                     ),
                   ),
                 ],
