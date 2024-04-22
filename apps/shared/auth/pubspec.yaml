@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_screenutil: ^5.9.0
   firebase_auth: ^4.17.3
   equatable: ^2.0.3
   get_it: ^7.6.7
