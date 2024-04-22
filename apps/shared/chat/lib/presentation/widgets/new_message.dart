@@ -19,7 +19,7 @@ class _NewMessageState extends State<NewMessage> {
     super.initState();
   }
 
-  void _submitMessage() async {
+  Future<void> _submitMessage() async {
     final enteredMessage = _messageController.text;
 
     if (enteredMessage.trim().isEmpty) {
@@ -36,12 +36,12 @@ class _NewMessageState extends State<NewMessage> {
         .doc(currentUser.uid)
         .get();
 
-    FirebaseFirestore.instance.collection('Chat').add(
+    await FirebaseFirestore.instance.collection('Chat').add(
       {
         'message': enteredMessage,
         'createdAt': Timestamp.now(),
         'userId': currentUser.uid,
-        'userName': userData.data()!['userName'],
+        'userName': userData.data()!['firstName'],
       },
     );
   }
@@ -76,9 +76,7 @@ class _NewMessageState extends State<NewMessage> {
           IconButton(
             color: context.seedColor.primary,
             onPressed: _submitMessage,
-            icon: const Icon(
-              Icons.send,
-            ),
+            icon: const Icon(Icons.send),
           ),
         ],
       ),

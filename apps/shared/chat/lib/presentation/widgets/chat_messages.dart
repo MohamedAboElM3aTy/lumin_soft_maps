@@ -5,9 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ChatMessages extends StatelessWidget {
-  const ChatMessages({
-    super.key,
-  });
+  const ChatMessages({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +13,7 @@ class ChatMessages extends StatelessWidget {
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('Chat')
-          // ! .where('userId', isEqualTo: authenticatedUser.uid)
+          // .where('userId', isEqualTo: authenticatedUser.uid)
           .orderBy(
             'createdAt',
             descending: true,
@@ -38,7 +36,7 @@ class ChatMessages extends StatelessWidget {
           );
         }
 
-        final loadedMessages = chatSnapshots.data!.docs;
+        final loadedChatMessages = chatSnapshots.data!.docs;
 
         return ListView.builder(
           padding: const EdgeInsets.only(
@@ -47,11 +45,11 @@ class ChatMessages extends StatelessWidget {
             right: 13,
           ),
           reverse: true,
-          itemCount: loadedMessages.length,
+          itemCount: loadedChatMessages.length,
           itemBuilder: (ctx, index) {
-            final chatMessage = loadedMessages[index].data();
-            final nextMessage = index + 1 < loadedMessages.length
-                ? loadedMessages[index + 1].data()
+            final chatMessage = loadedChatMessages[index].data();
+            final nextMessage = index + 1 < loadedChatMessages.length
+                ? loadedChatMessages[index + 1].data()
                 : null;
             final currentMessageUserID = chatMessage['userId'];
             final nextMessageUserID =

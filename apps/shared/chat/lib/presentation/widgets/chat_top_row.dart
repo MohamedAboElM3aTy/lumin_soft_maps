@@ -28,6 +28,13 @@ class ChatTopRowState extends State<ChatTopRow> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const LanguageButton(),
+        Text(
+          context.getText('chatScreen'),
+          style: context.textTheme.titleLarge?.copyWith(
+            fontSize: 22.toFont,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
         BlocConsumer<AuthCubit, AuthState>(
           bloc: _authCubit,
           listener: (context, state) {
