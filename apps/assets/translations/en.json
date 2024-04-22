@@ -44,9 +44,11 @@
     "historyRides": "History Rides :",
     "userNotRegistered": "User Not Registered",
     "noLocation": "No Location Added Yet",
+    "noRides": "No Rides Yet",
     "accept": "Accept",
     "reject": "Reject",
     "sendMessage": "Send Message ...",
     "noMessagesYet": "No Messages Yet ...",
-    "error": "Error"
+    "error": "Error",
+    "chatScreen": "Chat Screen"
 }

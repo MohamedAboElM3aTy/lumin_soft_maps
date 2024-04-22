@@ -44,10 +44,12 @@
     "historyRides": "تاريخ الرحلات",
     "userNotRegistered":"المستخدم غير مسجل",
     "noLocation": "لا يوجد مكان بعد",
+    "noRides": "لا يوجد رحلات بعد",
     "accept": "قبول",
     "reject": "رفض",
     "sendMessage": " ... ارسال رسالة",
     "noMessagesYet": " ... لا يوجد رسائل بعد",
-    "error": "خطأ"
+    "error": "خطأ",
+    "chatScreen": "شاشة الدردشة"
 
 }
