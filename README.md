@@ -1,6 +1,7 @@
 # This Flutter app was built during my internship.
 ### This is a small version of the Uber app ... both Client and Driver apps.
 
+[![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
 ## Task:
 
