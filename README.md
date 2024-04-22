@@ -34,3 +34,16 @@
 * [ ] Reflect the driver's and client's location as markers on the map. 
 * [ ] Refactor code. 
 * [ ] Finialize app.
+
+
+## ScreenShots 📸 
+### Driver App
+
+
+<img width="200" alt="Mockup" src="https://github.com/MohamedAboElM3aTy/lumin_soft_maps/assets/98196426/b78914df-e828-440f-85ee-05309a4b5563">
+<img width="200" alt="Mockup" src="https://github.com/MohamedAboElM3aTy/lumin_soft_maps/assets/98196426/7ac57604-cc7e-4fce-adbc-30a652234957">
+<img width="200" alt="Mockup" src="https://github.com/MohamedAboElM3aTy/lumin_soft_maps/assets/98196426/8de48452-36e8-46b3-8deb-5b52532116e9">
+<img width="200" alt="Mockup" src="https://github.com/MohamedAboElM3aTy/lumin_soft_maps/assets/98196426/f6a8c2b6-aa23-4b68-9224-d6a72d960c15">
+<img width="200" alt="Mockup" src="https://github.com/MohamedAboElM3aTy/lumin_soft_maps/assets/98196426/2dd9899e-6123-40e7-8159-b6bd88cc7920">
+<img width="200" alt="Mockup" src="https://github.com/MohamedAboElM3aTy/lumin_soft_maps/assets/98196426/d75c9a2c-07c4-4f74-9246-a21f8e991649">
+<img width="200" alt="Mockup" src="https://github.com/MohamedAboElM3aTy/lumin_soft_maps/assets/98196426/8dc9b2a8-6d95-44ca-adff-a6007f00c101">
