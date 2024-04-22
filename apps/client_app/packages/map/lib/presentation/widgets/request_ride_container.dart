@@ -98,16 +98,17 @@ class _RequestRideContainerState extends State<RequestRideContainer> {
                             SnackBar(content: Text(error.message!)),
                           );
                         },
-                        success: (map) {
-                          headLatitude = map.mapsEntity.latitude;
-                          headLongitude = map.mapsEntity.longitude;
+                        success: (location) {
+                          headLatitude = location.mapsEntity.latitude;
+                          headLongitude = location.mapsEntity.longitude;
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Column(
                                 children: [
-                                  Text(map.mapsEntity.latitude.toString()),
-                                  Text(map.mapsEntity.longitude.toString()),
-                                  Text(map.mapsEntity.streetName),
+                                  Text(location.mapsEntity.latitude.toString()),
+                                  Text(
+                                      location.mapsEntity.longitude.toString()),
+                                  Text(location.mapsEntity.streetName),
                                 ],
                               ),
                             ),
@@ -147,25 +148,25 @@ class _RequestRideContainerState extends State<RequestRideContainer> {
   Future<void> _searchAndSubmit() async {
     _formKey.currentState!.save();
     if (_formKey.currentState!.validate()) {
-      final streetName = widget.streetController.text;
-      final user = FirebaseAuth.instance.currentUser;
-      final collection = FirebaseFirestore.instance.collection('location');
-      await _mapsCubit.getCityLocation(street: streetName);
+      final street = widget.streetController.text;
+      final currentUser = FirebaseAuth.instance.currentUser;
+      final collection = FirebaseFirestore.instance.collection('rideRequests');
+      await _mapsCubit.getCityLocation(street: street);
       final latitude = await _getCurrentLocation().then(
         (currentLocation) => currentLocation.latitude,
       );
       final longitude = await _getCurrentLocation().then(
         (currentLocation) => currentLocation.longitude,
       );
-      await _showDialog(streetName: streetName);
+      await _showDialog(streetName: street);
       await collection.add(
         {
           'createdAt': Timestamp.now(),
-          'userId': user!.uid,
+          'userId': currentUser!.uid,
           'userLatitude': latitude,
           'userLongitude': longitude,
-          'userEmail': user.email,
-          'headLocation': streetName,
+          'userEmail': currentUser.email,
+          'headLocation': street,
           'headLatitude': headLatitude,
           'headLongitude': headLongitude,
           'status': 'pending'

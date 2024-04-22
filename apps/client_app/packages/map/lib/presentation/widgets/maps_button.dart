@@ -6,15 +6,17 @@ class MapsFloatingButton extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.icon,
+    required this.heroTag,
   });
 
   final VoidCallback onTap;
   final IconData icon;
+  final String heroTag;
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      heroTag: 'maps_floating_button',
+      heroTag: heroTag,
       backgroundColor: AppColors.whiteColor,
       onPressed: onTap,
       child: Icon(

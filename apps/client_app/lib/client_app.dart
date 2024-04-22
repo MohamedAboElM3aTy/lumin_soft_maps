@@ -9,6 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lumin_soft_maps/firebase_options.dart';
 import 'package:map/map.dart';
+import 'package:notifications/services/notification_service.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class ClientApp extends StatelessWidget {
   const ClientApp({super.key});
@@ -32,6 +35,7 @@ class ClientApp extends StatelessWidget {
             minTextAdapt: true,
             useInheritedMediaQuery: true,
             child: MaterialApp(
+              navigatorKey: navigatorKey,
               locale: context.locale,
               supportedLocales: localeCubit.supportedLocales,
               localizationsDelegates: context.localizationDelegates,
@@ -57,13 +61,19 @@ Future<void> initializeClientApp() async {
   // The dependency injection in 'Chat Package'
   await initChatGetIt();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-}
-
-void preventLandScape() {
-  SystemChrome.setPreferredOrientations(
-    [
-      DeviceOrientation.portraitDown,
-      DeviceOrientation.portraitUp,
-    ],
+  await NotificationService().initialize(
+    // ! topic: 'rideResponses',
+    onNavigate: () {
+      debugPrint('Navigation in the client app happened');
+      // Navigator.of(navigatorKey.currentContext!)
+      //     .pushNamed(AppRoutes.historyRoute);
+    },
   );
 }
+
+void preventLandScape() => SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitDown,
+        DeviceOrientation.portraitUp,
+      ],
+    );
