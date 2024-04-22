@@ -20,7 +20,13 @@ class NotificationService {
     _firebaseMessaging = FirebaseMessaging.instance;
   }
 
-  Future<void> initialize() async {
+  Future<void> initialize({
+    required VoidCallback onNavigate,
+    String? topic,
+  }) async {
+    debugPrint(
+        '--------------------------- Notification Initialization Happened ---------------------------');
+    await _firebaseMessaging.requestPermission();
     AppConstants.fcmToken = await _firebaseMessaging.getToken();
     debugPrint('FCM token: ${AppConstants.fcmToken}');
     await localNotification.initialize(initSettings);
@@ -28,6 +34,9 @@ class NotificationService {
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.requestNotificationsPermission();
+    // await FirebaseMessaging.instance.subscribeToTopic(topic);
+    await FirebaseMessaging.instance.subscribeToTopic('rideRequests');
+    // !  await FirebaseMessaging.instance.subscribeToTopic('rideResponses');
     FirebaseMessaging.onBackgroundMessage(onBackgroundMessage);
     FirebaseMessaging.onMessage.listen(
       (RemoteMessage message) async {
@@ -35,36 +44,39 @@ class NotificationService {
         debugPrint('onMessage: ${message.data}');
       },
     );
+    () => onNavigate();
   }
-}
 
-Future<void> onBackgroundMessage(RemoteMessage message) async {
-  await _showNotification(message);
-  debugPrint("On background message: ${message.data.toString()}");
-}
+  Future<void> onBackgroundMessage(RemoteMessage message) async {
+    debugPrint(
+        '--------------------------- On Background Message Happened ---------------------------');
+    await _showNotification(message);
+    debugPrint("On background message: ${message.data.toString()}");
+  }
 
-Future<void> _showNotification(RemoteMessage message) async {
-  await FirebaseMessaging.instance.subscribeToTopic('location');
-  const androidDetails = AndroidNotificationDetails(
-    "channelId",
-    "notification",
-    channelDescription: "Lumin Soft",
-    importance: Importance.max,
-    priority: Priority.max,
-    playSound: true,
-    icon: "assets/images/new_logo.jpg",
-  );
-  const iosDetails = DarwinNotificationDetails();
-  const generalNotificationDetails = NotificationDetails(
-    android: androidDetails,
-    iOS: iosDetails,
-  );
-  final String id = message.data['notification_id'] ?? '';
-  await localNotification.show(
-    int.tryParse(id) ?? 0,
-    message.data['title'] ?? message.notification?.title,
-    message.data['text'] ?? message.notification?.body,
-    generalNotificationDetails,
-    payload: json.encode(message.data),
-  );
+  Future<void> _showNotification(RemoteMessage message) async {
+    debugPrint(
+        '--------------------------- Show Notification() Happened ---------------------------');
+    const androidDetails = AndroidNotificationDetails(
+      "channelId",
+      "notification",
+      channelDescription: "Lumin Soft",
+      importance: Importance.max,
+      priority: Priority.max,
+      playSound: true,
+    );
+    const iosDetails = DarwinNotificationDetails();
+    const generalNotificationDetails = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
+    final String id = message.data['notification_id'] ?? '';
+    await localNotification.show(
+      int.tryParse(id) ?? 0,
+      message.data['title'] ?? message.notification?.title,
+      message.data['text'] ?? message.notification?.body,
+      generalNotificationDetails,
+      payload: json.encode(message.data),
+    );
+  }
 }
