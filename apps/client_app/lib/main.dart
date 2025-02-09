@@ -7,8 +7,6 @@ import 'package:lumin_soft_maps/client_app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeClientApp();
-  // ! await FirebaseApi().initNotifications();
-  // ? await NotificationService().initialize();
   preventLandScape();
   Bloc.observer = MyAppBlocObserver();
   runApp(
